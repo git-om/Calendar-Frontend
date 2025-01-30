@@ -1,3 +1,4 @@
+"use client"
 import { useMutation } from "@apollo/client";
 import { handleEventDelete } from "../hooks/eventDelete";
 import { handleSubmit } from "../hooks/submit";
@@ -12,9 +13,10 @@ export default function Form({
     formData,
     refetch
 }: any) {
-    const [deleteEvent] = useMutation(DELETE_EVENT);
     const [updateEvent] = useMutation(UPDATE_EVENT);
     const [createEvent] = useMutation(CREATE_EVENT);
+    const [deleteEvent] = useMutation(DELETE_EVENT);
+
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
