@@ -6,6 +6,7 @@ export default function EventList({ events, router, gotoDate, refetch }: any) {
     const [deleteEvent] = useMutation(DELETE_EVENT);
 
     function handleListItemClick(event: any) {
+        console.log(event);
         console.log("Event Start:", event.start);
         const eventDate = new Date(event.start).toISOString().split("T")[0]; // Convert to YYYY-MM-DD
         console.log("Converted Date:", eventDate);
@@ -34,6 +35,10 @@ export default function EventList({ events, router, gotoDate, refetch }: any) {
                                         {event.title}
                                     </strong>{" "}
                                     < br />
+                                    <span className="text-lg text-gray-800">
+                                        {event.description}
+                                    </span>
+                                    <br/>
                                     <span className="text-gray-600 text-sm">
                                         {new Intl.DateTimeFormat("en-US", {
                                             year: "numeric",
@@ -46,7 +51,7 @@ export default function EventList({ events, router, gotoDate, refetch }: any) {
                                             timeZone: "UTC",
                                         }).format(new Date(event.start))}
                                         </span>
-                                        <br></br>
+                                        <br/>
                                         <span className="text-gray-600 text-sm">
                                         {new Intl.DateTimeFormat("en-US", {
                                             year: "numeric",

@@ -34,6 +34,7 @@ export default function CalendarPage() {
   const events =
     data?.user?.events?.map((event: any) => ({
       id: event.id,
+      description: event.description,
       title: event.title,
       start: event.start,
       end: event.end,
