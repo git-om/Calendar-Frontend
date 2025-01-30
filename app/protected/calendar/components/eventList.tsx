@@ -44,8 +44,10 @@ export default function EventList({ events, router, gotoDate, refetch }: any) {
                                             minute: "2-digit",
                                             hour12: true,
                                             timeZone: "UTC",
-                                        }).format(new Date(event.start))}{" "}
-                                        -{" "}
+                                        }).format(new Date(event.start))}
+                                        </span>
+                                        <br></br>
+                                        <span className="text-gray-600 text-sm">
                                         {new Intl.DateTimeFormat("en-US", {
                                             year: "numeric",
                                             month: "long",
