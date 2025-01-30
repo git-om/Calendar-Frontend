@@ -24,6 +24,7 @@ export default function CalendarPage() {
     end: "",
   });
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  const [gotoDate, setGotoDate] = useState<(date: string | Date) => void>(() => () => {});
   if (loading) {
     return <>Loading...</>;
   }
@@ -52,7 +53,8 @@ export default function CalendarPage() {
         <div id="eventList&Logout">
           <EventList
             router={router}
-            events={events} />
+            events={events}
+            gotoDate={gotoDate} />
         </div>
       </div>
       {/* -------------------------------------------------------------- */}
@@ -63,6 +65,7 @@ export default function CalendarPage() {
           refetch={refetch}
           setFormData={setFormData}
           setSelectedEvent={setSelectedEvent}
+          setGotoDate={setGotoDate}
         />
       </div>
       {/* -------------------------------------------------------------- */}

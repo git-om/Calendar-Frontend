@@ -1,6 +1,12 @@
 import { handleEventLogout } from "../hooks/logout";
 
-export default function EventList({ events, router }: any) {
+export default function EventList({ events, router, gotoDate }: any) {
+    function handleListItemClick(event: any) {
+        console.log("Event Start:", event.start);
+        const eventDate = new Date(event.start).toISOString().split("T")[0]; // Convert to YYYY-MM-DD
+        console.log("Converted Date:", eventDate);
+        gotoDate(eventDate);
+    }
     
     return (
         <>
@@ -11,6 +17,7 @@ export default function EventList({ events, router }: any) {
                         {events.map((event: any) => (
                             <li
                                 key={event.id}
+                                onClick={() => handleListItemClick(event)}
                                 className="border border-gray-300 p-3 rounded-lg hover:shadow-md transition duration-300"
                             >
                                 <strong className="text-lg text-gray-800">

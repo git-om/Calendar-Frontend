@@ -12,14 +12,31 @@ import { festivals } from "@/festival";
 import { useMutation } from "@apollo/client";
 import { UPDATE_EVENT } from "@/app/graphql/mutations";
 import { cellStyle } from "../hooks/cellStyle";
+import { useEffect, useRef } from 'react';
 
-  
 
-export default function Calendar({events, data, refetch, setFormData, setSelectedEvent}:any) {
+export default function Calendar({ events, data, refetch, setFormData, setSelectedEvent, setGotoDate }: any) {
+
+    const calendarRef = useRef<FullCalendar | null>(null);
     const [updateEvent] = useMutation(UPDATE_EVENT);
+
+    useEffect(() => {
+        if (calendarRef.current) {
+            const calendarApi = calendarRef.current.getApi();
+            setGotoDate(() => (date: string | Date) => {
+                const formattedDate = new Date(date).toISOString().split("T")[0]; // Ensure correct format
+                console.log("Navigating to:", formattedDate);
+                calendarApi.gotoDate(formattedDate);
+            });
+        }
+    }, [setGotoDate]);
+    
+
+
 
     return (
         <FullCalendar
+            ref={calendarRef} // Attach the ref
             plugins={[
                 dayGridPlugin,
                 timeGridPlugin,
@@ -31,7 +48,7 @@ export default function Calendar({events, data, refetch, setFormData, setSelecte
                 center: "title",
                 right: "multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay",
             }}
-            dayCellDidMount={(info) => {cellStyle(info)}}
+            dayCellDidMount={(info) => { cellStyle(info) }}
             timeZone="UTC"
             height="100%"
             selectable={true}
