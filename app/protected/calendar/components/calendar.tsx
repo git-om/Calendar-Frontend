@@ -40,7 +40,7 @@ export default function Calendar({events, data, refetch, setFormData, setSelecte
             events={[...events, ...festivals]}
             eventClick={(info) => handleEventClick(info, data, setSelectedEvent, setFormData)}
             eventDrop={(eventDropInfo) => handleEventDrop(eventDropInfo, updateEvent, refetch)}
-            dateClick={(info) => handleDateClick(info, setFormData)}
+            dateClick={(info) => handleDateClick(info, setFormData, setSelectedEvent)}
             select={(info) => handleSelect(info, setFormData)}
             eventResize={(eventResizeInfo) => handleEventResize(eventResizeInfo, updateEvent, refetch)}
         />
