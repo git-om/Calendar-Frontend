@@ -1,10 +1,14 @@
+import { DELETE_EVENT } from "@/app/graphql/mutations";
+import { useMutation } from "@apollo/client";
+
 export const handleEventDelete = async (
-    deleteEvent: any,
     selectedEvent: any,
     setSelectedEvent: any,
     setFormData: any,
     refetch: any
 ) => {
+    const [deleteEvent] = useMutation(DELETE_EVENT);
+
     try {
         await deleteEvent({ variables: { id: selectedEvent.id } });
         // alert("Event deleted successfully");

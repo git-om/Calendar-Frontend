@@ -54,7 +54,8 @@ export default function CalendarPage() {
           <EventList
             router={router}
             events={events}
-            gotoDate={gotoDate} />
+            gotoDate={gotoDate}
+            refetch={refetch} />
         </div>
       </div>
       {/* -------------------------------------------------------------- */}
